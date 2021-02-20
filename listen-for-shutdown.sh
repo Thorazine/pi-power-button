@@ -13,10 +13,13 @@
 # Carry out specific functions when asked to by the system
 case "$1" in
   start)
+    echo 'on 0' | cec-client -s -d 1
+    echo 'as' | cec-client -s -d 1
     echo "Starting listen-for-shutdown.py"
     /usr/local/bin/listen-for-shutdown.py &
     ;;
   stop)
+    echo 'standby 0' | cec-client -s -d 1
     echo "Stopping listen-for-shutdown.py"
     pkill -f /usr/local/bin/listen-for-shutdown.py
     ;;
